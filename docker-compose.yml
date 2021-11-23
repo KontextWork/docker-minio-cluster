@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minio:
-    image: minio/minio
+    image: minio/minio:latest
     volumes:
       - minio-data:/data
       - minio-config:/root/.minio
