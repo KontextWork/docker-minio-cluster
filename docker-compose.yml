@@ -21,6 +21,8 @@ services:
       traefik.enable: 'true'
 
   traefik:
+    depends_on:
+      - minio
     restart: always
     image: eugenmayer/traefik:2.x
     ports:
