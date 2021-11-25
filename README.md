@@ -15,3 +15,7 @@ Then run:
 ```bash
 $ docker-compose up -d
 ```
+
+# Access
+
+By default you can access the gui using `gui.<MINIO_DOMAIN>` - using the user/password you provided in your `.env` file

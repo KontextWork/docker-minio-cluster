@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  minio1:
+    labels:
+      traefik.http.routers.minio1gui.rule: 'Host(`gui.${MINIO_DOMAIN}`)'
+      traefik.http.routers.minio1gui.service: minio1gui
+      traefik.http.services.minio1gui.loadbalancer.server.port: 9001
+  traefik:
+    restart: always
+    image: eugenmayer/traefik:2.x
+    ports:
+      - 80:8080
+      - 443:8443
+    environment:
+      TRAEFIK_ACME_ENABLE: 'false'
+      TRAEFIK_ADMIN_SSL: 'false'
+      TRAEFIK_ADMIN_ENABLE: 'false'
+
+      TRAEFIK_HTTPS_ENABLE: 'false'
+      ### basic provider setup
+      TRAEFIK_DOCKER_ENABLE: 'true'
+      TRAEFIK_DOCKER_EXPOSEDBYDEFAULT: 'false'
+    volumes:
+      - ./data/certs:/mnt/certs
+      - ./data/acme:/mnt/acme
+      # mount our docker socket so our docker container can be discovered
+      - /var/run/docker.sock:/var/run/docker.sock
