@@ -1,7 +1,9 @@
 version: '3'
 x-minio-common: &minio-common
   restart: always
-  image: minio/minio:RELEASE.2021-11-09T03-21-45Z
+  # see https://github.com/minio/minio/tags 
+  # and https://hub.docker.com/r/minio/minio/tags
+  image: minio/minio:RELEASE.2021-11-24T23-19-33Z
   command: server --console-address ":9001" ${MINIO_SCALE_PATTERN}
   ports:
     - '9001:9001'
