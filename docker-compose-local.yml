@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  minio1:
+    ports:
+      # expose the api to the host
+      - 9000:9000
